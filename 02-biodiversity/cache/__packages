@@ -1,0 +1,17 @@
+base
+codetools
+coyote
+devtools
+doMC
+foreach
+ggplot2
+iterators
+knitr
+maps
+plyr
+reshape2
+rgbif
+rnoaa
+rvertnet
+scales
+taxize

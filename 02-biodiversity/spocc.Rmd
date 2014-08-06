@@ -1,0 +1,57 @@
+### spocc - Make some maps!
+
+### Load libraries
+
+```{r load, message=FALSE, warning=FALSE}
+library(spocc)
+library(rCharts)
+```
+
+### spocc unifies access to biodiversity data across sources
+
+```{r sources, message=FALSE, warning=FALSE}
+out <- occ(query='Accipiter striatus', from='gbif')
+out$gbif # GBIF data w/ metadata
+out$ebird$data # empty
+out$gbif$meta #  metadata, your query parameters, time the call executed, etc. 
+out$gbif$data # just data
+```
+
+And you can squash together data from sources easily
+
+```{r manysources, message=FALSE, warning=FALSE}
+out <- occ(query='Accipiter striatus', from=c('gbif','bison'))
+head( occ2df(out) )
+```
+
+
+### Make a map using Shiny locally (uses rCharts)
+
+Try changing the species names to whatever you like and press **Submit**
+
+Or change the background map, or the color palette. 
+
+**This may not work using RStudio server**
+
+```{r shinymap, eval=FALSE}
+mapshiny()
+```
+
+
+### Make a map using rCharts
+
+```{r rcharts, eval=FALSE}
+spp <- c('Danaus plexippus','Accipiter striatus','Pinus contorta')
+dat <- occ(query=spp, from='gbif', gbifopts=list(georeferenced=TRUE))
+dat <- occ2df(dat)
+maprcharts(data=dat)
+```
+
+
+### Make a map using GitHub gists
+
+If you have a Github Account, you can get an interactive map on Github in one line of code. The map will open in your default browser. 
+
+```{r gistmap, eval=FALSE}
+mapgist(data=dat, color=c("#976AAE","#6B944D","#BD5945"))
+```

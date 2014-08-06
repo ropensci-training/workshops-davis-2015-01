@@ -1,0 +1,19 @@
+# You can get some plant names using `names_list`
+
+By default gets generic names, and returns 10 items
+
+```{r}
+names_list()
+```
+
+Get 5 species names
+
+```{r}
+names_list('species', 5)
+```
+
+Get 10 family names
+
+```{r}
+names_list('family', 10)
+```

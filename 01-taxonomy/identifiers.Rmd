@@ -1,0 +1,32 @@
+## taxize tries to make it easy to get identifiers from the various database sources
+
+Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass those ideas to other functions that act on those ids without any other input
+
+*p.s. this also demonstrates the interactive prompt, as you'll see*
+
+```{r, message=FALSE, warning=FALSE}
+library(taxize)
+out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','eol','tropicos'))
+```
+
+## get classification from ITIS
+
+```{r, message=FALSE, warning=FALSE}
+classification(out$itis)
+```
+
+## get synonyms from Tropicos
+
+```{r, message=FALSE, warning=FALSE}
+synonyms(out$tropicos)
+```
+
+## Many names
+
+In this case get many identifiers for many names, then pass in identifiers to get many classifications
+
+```{r, message=FALSE, warning=FALSE}
+mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
+out <- get_ids(names=mynames, db = c('ncbi','itis','col','eol','tropicos'))
+classification(out)
+```

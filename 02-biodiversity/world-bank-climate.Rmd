@@ -1,0 +1,69 @@
+Introduction to rWBclimate
+========================================================
+
+The [ROpenSci](http://www.ropensci.org) package `rWBclimate` provides full access to all the climate data provided by the [World Bank](http://www.worldbank.org/) via their [climate data api](http://data.worldbank.org/developers/climate-data-api).  The package provides an easy way to download data for research and visualization purposes.  While the package provides access to a tremendous amount of data we wil focus on a few simple examples.  Full documentation and detailed examples can be found at the [package website](https://github.com/ropensci/rWBclimate).
+
+Let's begin by loading the necessary libraries.
+```{r libraries, message=FALSE, warning=FALSE}
+library(rWBclimate)
+```
+
+
+### Downloading ensemble climate data
+
+The package can download data for any of the 13 major climate models, but it also offers provides access to ensemble data derived from all models.  We'll focus on this for our examples.  Model data is provided both for the past as a backcasting, and for the future.  Output for both only comes in 20 year averages.  Here we'll plot temperature data for Great Britain for the past as well as two [climate scenarios](http://climatesanity.wordpress.com/tag/global-depletion-of-groundwater-resources/), A2 and B1.
+
++ Grab temp data
++ Subset to just the median percentile
++ Plot and note the past is the same for each scenario
+
+```{r tempPlot, message=FALSE, warning=FALSE}
+gbr.dat.t <- get_ensemble_temp("GBR", "annualavg", 1900,2100)
+gbr.dat.t <- subset(gbr.dat.t,gbr.dat.t$percentile == 50)
+
+ggplot(gbr.dat.t,aes(x=fromYear,y=data,group=scenario, colour=scenario)) + 
+  theme_bw(base_size=20) + 
+  geom_point() + 
+  geom_path() + 
+  labs(x="Year", y="Annual Average Temperature in 20 year increments")
+```
+
+As you can see the A2 scenario of unchecked growth predicts a higher annual average temperature.  We can look at the same kind of data except this time examining changes in precipitation.
+
+```{r precipplot, message=FALSE, warning=FALSE}
+gbr.dat.p <- get_ensemble_precip("GBR", "annualavg", 1900,2100)
+gbr.dat.p <- subset(gbr.dat.p,gbr.dat.p$percentile == 50)
+ggplot(gbr.dat.p, aes(x=fromYear,y=data,group=scenario, colour=scenario)) + 
+  theme_bw(base_size=20) + 
+  geom_point() + 
+  geom_path() + 
+  labs(x="Year", y="Annual Average precipitation in mm")
+```
+
+Here the difference between predicted increases in precipitation are less drastic when comparing the two different scenarios.
+
+### Making maps.
+
+One of the most useful aspects of the climate api is the ability to create maps of climate data.  You can access  data on two spatial scales, Country, and watershed basin.  Watershed basin will provide greater spatial resolution than country (though not in all instances).  The package has convenient data frames with lists of all the basins or countries in all the continents.  Here we'll look at a map of expected precipitation anomalies in Europe.  Maps work by downloading kml files, storing them locally and then reading them into R.  It relies on having a local directory which can be set with `options(kmlpath = <yourpath>)`.  After that a few function calls will download the requested map, link climate data to the map and plot it for you (also note that the initial downloads of kml files can take some time)
+
+```{r mapping, message=FALSE, warning=FALSE}
+
+### Set local path  
+options(kmlpath = "~/kmltemp")
+
+# create data.frame with mapping data to plot
+eu_basin <- create_map_df(Eur_basin)
+
+### Get some data
+eu_basin_dat <- get_ensemble_temp(Eur_basin, "annualanom", 2080, 2100)
+## Subset data to just one scenario, and one percentile so we have 1 piece of information per spatial unit
+eu_basin_dat <- subset(eu_basin_dat, eu_basin_dat$scenario == "a2" & eu_basin_dat$percentile == 50)
+
+# link map dataframe to climate data
+eu_map <- climate_map(eu_basin, eu_basin_dat, return_map = TRUE)
+eu_map + 
+  scale_fill_continuous("Temperature \n anomaly by 2080", low = "yellow", high = "red")
+```
+
+
+The temperature anomaly mapped shows a general increase in temperature over the control period of 1961 - 2009.  The geratest increase looks to be coming in the interior of Eastern Europe.

@@ -1,0 +1,49 @@
+## taxize use case No. 3 - Aggregate a data set to a taxonomic level
+
+```{r defaults, eval=TRUE, echo=FALSE}
+opts_chunk$set(comment=NA, warning=FALSE, message=FALSE, fig.width=7, fig.height=6)
+```
+
+### Load libraries
+
+```{r load, warning=FALSE, message=FALSE}
+library(taxize)
+library(vegan)
+```
+
+### Use the dune dataset from the vegan package
+
+```{r checknames, message=FALSE, warning=FALSE}
+data(dune, package='vegan')
+dune <- dune[,-c(22:30)] # take a subset
+species <- c("Bellis perennis", "Empetrum nigrum", "Juncus bufonius",
+"Juncus articulatus","Aira praecox", "Eleocharis parvula", "Rumex acetosa", "Vicia lathyroides",
+"Brachythecium rutabulum", "Ranunculus flammula", "Cirsium arvense",
+"Hypochaeris radicata", "Leontodon autumnalis", "Potentilla palustris",
+"Poa pratensis", "Calliergonella cuspidata", "Trifolium pratense",
+"Trifolium repens", "Anthoxanthum odoratum", "Salix repens", "Achillea millefolium")
+colnames(dune) <- species
+head(dune)
+```
+
+### Aggregate sample to families
+
+```{r}
+agg <- tax_agg(dune, rank = 'family', db = 'ncbi')
+agg
+```
+
+### Extract aggregated community data matrix for further usage
+
+See that data is now aggregated from the original at the species level to the family level
+
+```{r}
+head(dune)
+head(agg$x)
+```
+
+Check which taxa have been aggregated
+
+```{r}
+agg$by
+```
