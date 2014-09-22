@@ -3,7 +3,7 @@
 # UGA Workshop
 Date: **September 26th, 1:15 - 3:15**
 
-Location: *ROOM XX*
+Location: *ROOM: Plant Science 1503A*
 
 Welcome to the GitHub repository for the UGA workshop. All the code and packages included in this material are already installed on our RStudio server. You'll simply need to login at [http://rstudio.ropensci.org](http://rstudio.ropensci.org/) with the credentials provided to you at the workshop.
 
