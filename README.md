@@ -1,7 +1,7 @@
 
 [![](ropensci_logo.png)](http://ropensci.org/)
 # UGA Workshop
-Date: **September 26th, XX:XX - XX:XX**
+Date: **September 26th, 1:15 - 3:15**
 
 Location: *ROOM XX*
 
@@ -17,12 +17,12 @@ You'll be able to copy-paste all of the code provided here directly into RStudio
 
 |Topic|Time|
 |---------------|-------|
-|**Setup-Make sure all widgets are whirling**| 2:55 - 3:00 |
-|**Brief introduction to rOpenSci** [slides](/00-introduction/intro_slides/index.html) | 3:00 - 3:10 |
-|**rOpenSci demos 1** *Taxonomic names*  | 3:10 - 3:40 |
-|**Break**| 3:40 - 3:45 |
-|**rOpenSci demos 2** *Biodiversity records* | 3:50 - 4:30 |
-|**Discussion/your data**  | 4:30 - 5:00 |
+|**Setup-Make sure all widgets are whirling**| 1:10 - 1:15 |
+|**Brief introduction to rOpenSci** [slides](/00-introduction/intro_slides/index.html) | 1:15 - 1:25 |
+|**rOpenSci demos 1** *Taxonomic names*  | 1:25 - 2:00 |
+|**rOpenSci demos 2** *Biodiversity records* | 2:00 - 2:30 |
+|**rOpenSci demos 3** *XXXX* | 2:30 - 2:50 |
+|**Discussion/your data**  | 2:50 - 3:15 |
 
 ## Feedback
 
