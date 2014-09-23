@@ -1,4 +1,4 @@
-biodiversity - introduction
+ropensci ~ biodiversity data
 ========================================================
 author: 
 date: 
@@ -6,14 +6,15 @@ date:
 Many different packages
 ========================================================
 
-- [rgbif](#)
-- [rinat](#)
-- [ecoengine](#)
-- [rebird](#)
-- [rvertnet](#)
-- [rbison](#)
-- [rAvis](#)
-- [pangaear](#)
+- [rgbif](https://github.com/ropensci/rgbif)
+- [rnbn](https://github.com/ropensci/rnbn)
+- [rinat](https://github.com/ropensci/rinat)
+- [ecoengine](https://github.com/ropensci/ecoengine)
+- [rebird](https://github.com/ropensci/rebird)
+- [rvertnet](https://github.com/ropensci/rvertnet)
+- [rbison](https://github.com/ropensci/rbison)
+- [rAvis](https://github.com/ropensci/rAvis)
+- [pangaear](https://github.com/ropensci/pangaear)
 
 A taxize like 1-stop shop
 ========================================================
@@ -23,13 +24,3 @@ A taxize like 1-stop shop
 * Access to all data sources prev slide
 * Single user interface to biodiversity data
 * Easily make static or interactive maps
-
-
-Other packages
-========================================================
-
-* NOAA Buoy data
-* NOAA ERDDAP data
-* NOAA NCDC data
-* Sea ice data
-* Severe Weather Data Inventory

@@ -1,4 +1,4 @@
-earth science data
+ropensci ~ earth science data
 ========================================================
 author: 
 date: 

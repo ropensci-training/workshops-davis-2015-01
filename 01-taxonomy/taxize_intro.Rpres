@@ -1,4 +1,4 @@
-taxize - introduction
+ropensci ~ taxize
 ========================================================
 author: 
 date: all things taxonomic names
@@ -8,7 +8,7 @@ Large package - two organizing principles
 
 - Data sources
   - Lots of data sources, currently 20
-- Verbs
+- Verbs (ish)
   - `classification()`
   - `children()`
   - `downstream()`
@@ -20,7 +20,7 @@ Why?
 ========================================================
 
 <br>
-> A single easy to use user interface to many data sources can simplify science, and make it more reproducible
+> # A single easy to use user interface to many data sources can simplify science, and make it more reproducible
 
 Why...more
 ========================================================
