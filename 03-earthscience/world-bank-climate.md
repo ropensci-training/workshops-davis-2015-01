@@ -5,10 +5,11 @@ The [ROpenSci](http://www.ropensci.org) package `rWBclimate` provides full acces
 
 Let's begin by loading the necessary libraries.
 
-```r
-library(rWBclimate)
-```
 
+```r
+library('rWBclimate')
+library('ggplot2')
+```
 
 
 ### Downloading ensemble climate data
@@ -21,30 +22,36 @@ The package can download data for any of the 13 major climate models, but it als
 
 
 ```r
-gbr.dat.t <- get_ensemble_temp("GBR", "annualavg", 1900, 2100)
-gbr.dat.t <- subset(gbr.dat.t, gbr.dat.t$percentile == 50)
+gbr_dat_t <- get_ensemble_temp("GBR", "annualavg", 1900,2100)
+gbr_dat_t <- subset(gbr_dat_t, gbr_dat_t$percentile == 50)
+gbr_dat_t$val <- unlist(gbr_dat_t$val)
 
-ggplot(gbr.dat.t, aes(x = fromYear, y = data, group = scenario, colour = scenario)) + 
-    theme_bw(base_size = 20) + geom_point() + geom_path() + labs(x = "Year", 
-    y = "Annual Average Temperature in 20 year increments")
+ggplot(gbr_dat_t, aes(x=fromYear, y=data, group=scenario, colour=scenario)) +
+  theme_bw(base_size=20) +
+  geom_point() +
+  geom_path() +
+  labs(x="Year", y="Annual Average Temperature in 20 year increments")
 ```
 
-![plot of chunk tempPlot](figure/tempPlot.png) 
-
+```
+## Error: geom_point requires the following missing aesthetics: y
+```
 
 As you can see the A2 scenario of unchecked growth predicts a higher annual average temperature.  We can look at the same kind of data except this time examining changes in precipitation.
 
 
 ```r
-gbr.dat.p <- get_ensemble_precip("GBR", "annualavg", 1900, 2100)
-gbr.dat.p <- subset(gbr.dat.p, gbr.dat.p$percentile == 50)
-ggplot(gbr.dat.p, aes(x = fromYear, y = data, group = scenario, colour = scenario)) + 
-    theme_bw(base_size = 20) + geom_point() + geom_path() + labs(x = "Year", 
-    y = "Annual Average precipitation in mm")
+gbr_dat_p <- get_ensemble_precip("GBR", "annualavg", 1900,2100)
+gbr_dat_p <- subset(gbr_dat_p, gbr_dat_p$percentile == 50)
+gbr_dat_p$data <- unlist(gbr_dat_p$data)
+ggplot(gbr_dat_p, aes(x=fromYear, y=data, group=scenario, colour=scenario)) +
+  theme_bw(base_size=20) +
+  geom_point() +
+  geom_path() +
+  labs(x="Year", y="Annual Average precipitation in mm")
 ```
 
-![plot of chunk precipplot](figure/precipplot.png) 
-
+![plot of chunk precipplot](figure/precipplot.png)
 
 Here the difference between predicted increases in precipitation are less drastic when comparing the two different scenarios.
 
@@ -54,28 +61,28 @@ One of the most useful aspects of the climate api is the ability to create maps 
 
 
 ```r
-
-### Set local path
+### Set local path  
 options(kmlpath = "~/kmltemp")
 
 # create data.frame with mapping data to plot
 eu_basin <- create_map_df(Eur_basin)
+```
 
+
+```r
 ### Get some data
 eu_basin_dat <- get_ensemble_temp(Eur_basin, "annualanom", 2080, 2100)
-## Subset data to just one scenario, and one percentile so we have 1 piece of
-## information per spatial unit
-eu_basin_dat <- subset(eu_basin_dat, eu_basin_dat$scenario == "a2" & eu_basin_dat$percentile == 
-    50)
+
+## Subset data to just one scenario, and one percentile so we have 1 piece of information per spatial unit
+eu_basin_dat <- subset(eu_basin_dat, eu_basin_dat$scenario == "a2" & eu_basin_dat$percentile == 50)
 
 # link map dataframe to climate data
 eu_map <- climate_map(eu_basin, eu_basin_dat, return_map = TRUE)
-eu_map + scale_fill_continuous("Temperature \n anomaly by 2080", low = "yellow", 
-    high = "red")
+eu_map +
+  scale_fill_continuous("Temperature \n anomaly by 2080", low = "yellow", high = "red")
 ```
 
-![plot of chunk mapping](figure/mapping.png) 
-
+![plot of chunk mapping](figure/mapping.png)
 
 
 The temperature anomaly mapped shows a general increase in temperature over the control period of 1961 - 2009.  The geratest increase looks to be coming in the interior of Eastern Europe.
