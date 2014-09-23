@@ -21,7 +21,7 @@ You'll be able to copy-paste all of the code provided here directly into RStudio
 |**Brief introduction to rOpenSci** [slides](/00-introduction/intro_slides/index.html) | 1:15 - 1:25 |
 |**rOpenSci demos 1** *Taxonomic names*  | 1:25 - 2:00 |
 |**rOpenSci demos 2** *Biodiversity records* | 2:00 - 2:30 |
-|**rOpenSci demos 3** *XXXX* | 2:30 - 2:50 |
+|**rOpenSci demos 3** *Earth science data* | 2:30 - 2:50 |
 |**Discussion/your data**  | 2:50 - 3:15 |
 
 ## Feedback
