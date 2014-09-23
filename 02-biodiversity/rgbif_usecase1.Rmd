@@ -1,20 +1,28 @@
-## rgbif use case No. 1 - Ecological niche modelling (aka species distribution modelling)
+## rgbif use case - Ecological niche modelling (aka species distribution modelling)
+
+```{r child="../knitopts.Rmd", include=FALSE}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width=7, 
+  fig.height=6
+)
+```
 
 In this example, we plot actual occurrence data for *Bradypus* species against a single predictor variable, BIO1 (annual mean temperature). This is only ont step in a species distribution modelling nworkflow.
 
 This example can be done using BISON data as well with our rbison package.
 
-```{r defaults, eval=TRUE, echo=FALSE}
-opts_chunk$set(comment=NA, warning=FALSE, message=FALSE, fig.width=7, fig.height=6)
-```
-
 ### Load libraries
 
-```{r load, comment=NA, cache=FALSE}
-library(rgbif)
-library(dismo)
-library(maptools)
-library(plyr)
+```{r load, cache=FALSE}
+library('rgbif')
+library('dismo')
+library('maptools')
+library('plyr')
 ```
 
 ### Make a list of files that are installed with the dismo package, then create a rasterStack from these
@@ -48,10 +56,10 @@ keys <- na.omit(unique(namesdf$nubKey))
 Get occurrence data
 
 ```{r sdm5, cache=FALSE}
-df <- occ_search(keys, georeferenced=TRUE, limit=100, return='data')
+df <- occ_search(keys, hasCoordinate = TRUE, limit = 100, return = 'data')
 df <- df[sapply(df, class) == "data.frame"]
 df2 <- ldply(df)
-df2 <- data.frame(lon=df2$longitude, lat=df2$latitude)
+df2 <- data.frame(lon=df2$decimalLongitude, lat=df2$decimalLatitude)
 ```
 
 ### Plot: (1) Add raster data, (2) Add political boundaries, (3) Add the points (occurrences)

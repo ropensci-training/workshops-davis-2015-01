@@ -1,0 +1,9 @@
+```{r}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```

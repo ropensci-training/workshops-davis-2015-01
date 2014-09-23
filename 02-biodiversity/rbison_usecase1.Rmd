@@ -1,13 +1,14 @@
 ## Macroecology - testing the species-abundance distribution
 
-```{r, warning=FALSE, message=FALSE}
-library(rbison)
-library(ggplot2)
-library(plyr)
-library(doMC)
+```{r}
+library('rbison')
+library('ggplot2')
+library('plyr')
 ```
 
-```{r, warning=FALSE, message=FALSE}
+Define species names vector
+
+```{r}
 mynames <- c("Helianthus annuus", "Pinus contorta", "Poa annua", 
   "Madia sativa", "Arctostaphylos glauca", "Heteromeles arbutifolia",
   "Symphoricarpos albus", "Ribes viburnifolium", "Diplacus aurantiacus", 
@@ -15,20 +16,26 @@ mynames <- c("Helianthus annuus", "Pinus contorta", "Poa annua",
   "Ribes malvaceum", "Cercocarpus betuloides", "Penstemon spectabilis")
 ```
 
+Define function to get data
+
 ```{r}
-getdata <- function(x, count = 2) {
-  out <- bison(species = x, county = "Los Angeles", count = count)
-  bison_data(out, "data_df")
+getdata <- function(x) {
+  out <- bison(species = x, county = "Los Angeles", count = 0, what = "summary")
+  out$summary$specimen
 }
 ```
 
-```{r, warning=FALSE, message=FALSE}
-registerDoMC(cores = 4)
-out <- ldply(mynames, getdata, count = 500, .parallel = TRUE)
-df <- ddply(out, .(name), summarise, abd = length(name))
+Get data for each name, combine to `data.frame`
+
+```{r}
+out <- sapply(mynames, getdata)
+names(out) <- mynames
+df <- ldply(out)
 ```
 
-```{r, warning=FALSE, message=FALSE}
-library(vegan)
-plot(radfit(df$abd))
+Fit various models of species abundance distributions
+
+```{r}
+library('vegan')
+plot(radfit(df$V1))
 ```
