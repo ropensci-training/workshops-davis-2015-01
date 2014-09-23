@@ -12,6 +12,8 @@ Many different packages
 - [rebird](#)
 - [rvertnet](#)
 - [rbison](#)
+- [rAvis](#)
+- [pangaear](#)
 
 A taxize like 1-stop shop
 ========================================================
@@ -23,7 +25,7 @@ A taxize like 1-stop shop
 * Easily make static or interactive maps
 
 
-noaa - climate
+Other packages
 ========================================================
 
 * NOAA Buoy data
