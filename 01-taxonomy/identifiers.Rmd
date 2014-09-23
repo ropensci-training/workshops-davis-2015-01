@@ -1,32 +1,60 @@
 ## taxize tries to make it easy to get identifiers from the various database sources
 
-Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass those ideas to other functions that act on those ids without any other input
+```{r}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
+Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass those ids to other functions that act on those ids without any other input
 
 *p.s. this also demonstrates the interactive prompt, as you'll see*
 
-```{r, message=FALSE, warning=FALSE}
-library(taxize)
+```{r}
+library('taxize')
 out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','eol','tropicos'))
 ```
 
-## get classification from ITIS
+## Get a classification
 
-```{r, message=FALSE, warning=FALSE}
+### From ITIS
+
+```{r}
 classification(out$itis)
 ```
 
-## get synonyms from Tropicos
+### From COL
 
-```{r, message=FALSE, warning=FALSE}
-synonyms(out$tropicos)
+```{r}
+classification(out$col)
 ```
 
-## Many names
+### From NCBI
+
+```{r}
+classification(out$ncbi)
+```
+
+## Get synonyms from Tropicos
+
+```{r}
+synonyms(out$itis)
+```
+
+## Many names - the ids class
 
 In this case get many identifiers for many names, then pass in identifiers to get many classifications
 
-```{r, message=FALSE, warning=FALSE}
+```{r}
 mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
 out <- get_ids(names=mynames, db = c('ncbi','itis','col','eol','tropicos'))
-classification(out)
+out$tropicos
+class(out)
+class(out$col)
+classification(out$col)
 ```

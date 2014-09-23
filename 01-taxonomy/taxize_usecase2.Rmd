@@ -1,18 +1,44 @@
-## Collect common names from taxonomic names
+## Get common names from taxonomic names
+
+```{r include=FALSE}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
 
 You may want to collect taxonomic names for some reason in your research. taxize has a number of ways to do this. One is using `sci2comm` function
 
-```{r commonnames, eval=TRUE, cache=TRUE}
+Define names
+
+```{r definenames}
+library('taxize')
 splist <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora","Abies magnifica","Rosa californica","Datura wrightii","Mimulus bicolor","Nicotiana glauca","Madia sativa","Bartlettia scaposa")
+```
 
+Search for common names
+
+```{r search}
 comnames <- sci2comm(splist, db="itis", simplify=TRUE)
+```
 
-# Unfortunately, common names are not standardized like species names, so there are multiple common names for each taxon
-sapply(comnames, nrow)
+Unfortunately, common names are not standardized like species names, so there are multiple common names for each taxon
 
-# So let's just take the first common name for each species
-comnames_vec <- sapply(comnames, function(x) as.character(x$comname[[1]]), USE.NAMES=FALSE)
+```{r inspect}
+sapply(comnames, length)
+```
 
-# And we can make a data.frame of our scientific and common names
+So let's just take the first common name for each species
+
+```{r takefirst}
+comnames_vec <- unname(sapply(comnames, function(x) x[[1]]))
+```
+
+And we can make a `data.frame` of our scientific and common names
+
+```{r combine}
 (allnames <- data.frame(spname = splist, comname = comnames_vec))
 ```

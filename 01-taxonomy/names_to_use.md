@@ -8,37 +8,34 @@ names_list()
 ```
 
 ```
-##  [1] "Campylanthera"   "Elatine"         "Conocephalum"   
-##  [4] "Dicranella"      "Muraltia"        "Trachyphyllum"  
-##  [7] "Ropalon"         "Orthostichidium" "Micromitrium"   
-## [10] "Pleurocladopsis"
+##  [1] "Epilobium"           "Lundellianthus"      "Tricarpelema"       
+##  [4] "Pitavia"             "Schlumbergera"       "Pothos"             
+##  [7] "Sterigmapetalum"     "Heterothalamulopsis" "Degenia"            
+## [10] "Saccocalyx"
 ```
-
 
 Get 5 species names
 
 
 ```r
-names_list("species", 5)
+names_list('species', 5)
 ```
 
 ```
-## [1] "Metteniusa tessmanniana"      "Metzgeria leptoneura"        
-## [3] "Betula zinserlingii"          "Rinorea multivenosa"         
-## [5] "Bryolawtonia vancouveriensis"
+## [1] "Coriaria duthiei"    "Eugenia subundulata" "Abelia spathulata"  
+## [4] "Lupinus subcuneatus" "Hieracium canescens"
 ```
-
 
 Get 10 family names
 
 
 ```r
-names_list("family", 10)
+names_list('family', 10)
 ```
 
 ```
-##  [1] "Cacaoaceae"     "Vernoniaceae"   "Platycladaceae" "Potaliaceae"   
-##  [5] "Roxburghiaceae" "Rhinanthaceae"  "Polygalaceae"   "Tussilagaceae" 
-##  [9] "Moraceae"       "Tapisciaceae"
+##  [1] "Codonaceae"       "Pterostemonaceae" "Altingiaceae"    
+##  [4] "Coeleanthaceae"   "Dalbergiaceae"    "Salaxidaceae"    
+##  [7] "Opiliaceae"       "Smilacaceae"      "Peganaceae"      
+## [10] "Koeberliniaceae"
 ```
-

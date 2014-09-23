@@ -1,6 +1,8 @@
 base
 devtools
 knitr
+lattice
+permute
 plyr
 raster
 Rdocumentation
@@ -10,3 +12,4 @@ slidify
 slidifyLibraries
 sp
 taxize
+vegan

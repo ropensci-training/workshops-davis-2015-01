@@ -1,51 +1,66 @@
-## Collect common names from taxonomic names
+## Get common names from taxonomic names
+
+
 
 You may want to collect taxonomic names for some reason in your research. taxize has a number of ways to do this. One is using `sci2comm` function
 
+Define names
+
 
 ```r
-splist <- c("Helianthus annuus", "Pinus contorta", "Collomia grandiflora", "Abies magnifica", 
-    "Rosa californica", "Datura wrightii", "Mimulus bicolor", "Nicotiana glauca", 
-    "Madia sativa", "Bartlettia scaposa")
-
-comnames <- sci2comm(splist, db = "itis", simplify = TRUE)
-
-# Unfortunately, common names are not standardized like species names, so
-# there are multiple common names for each taxon
-sapply(comnames, nrow)
+library('taxize')
+splist <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora","Abies magnifica","Rosa californica","Datura wrightii","Mimulus bicolor","Nicotiana glauca","Madia sativa","Bartlettia scaposa")
 ```
 
-```
-##    Helianthus annuus       Pinus contorta Collomia grandiflora 
-##                    4                   20                    2 
-##      Abies magnifica     Rosa californica      Datura wrightii 
-##                    5                    1                    3 
-##      Mimulus bicolor     Nicotiana glauca         Madia sativa 
-##                    1                    2                    3 
-##   Bartlettia scaposa 
-##                    1
-```
+Search for common names
+
 
 ```r
+comnames <- sci2comm(splist, db="itis", simplify=TRUE)
+```
 
-# So let's just take the first common name for each species
-comnames_vec <- sapply(comnames, function(x) as.character(x$comname[[1]]), USE.NAMES = FALSE)
+Unfortunately, common names are not standardized like species names, so there are multiple common names for each taxon
 
-# And we can make a data.frame of our scientific and common names
+
+```r
+sapply(comnames, length)
+```
+
+```
+#     Helianthus annuus       Pinus contorta Collomia grandiflora 
+#                     4                    4                    2 
+#       Abies magnifica     Rosa californica      Datura wrightii 
+#                     5                    1                    3 
+#       Mimulus bicolor     Nicotiana glauca         Madia sativa 
+#                     1                    2                    3 
+#    Bartlettia scaposa 
+#                     1
+```
+
+So let's just take the first common name for each species
+
+
+```r
+comnames_vec <- unname(sapply(comnames, function(x) x[[1]]))
+```
+
+And we can make a `data.frame` of our scientific and common names
+
+
+```r
 (allnames <- data.frame(spname = splist, comname = comnames_vec))
 ```
 
 ```
-##                                    spname                       comname
-## Helianthus annuus       Helianthus annuus              common sunflower
-## Pinus contorta             Pinus contorta                lodgepole pine
-## Collomia grandiflora Collomia grandiflora        largeflowered collomia
-## Abies magnifica           Abies magnifica                    golden fir
-## Rosa californica         Rosa californica           California wildrose
-## Datura wrightii           Datura wrightii            sacred thorn-apple
-## Mimulus bicolor           Mimulus bicolor yellow and white monkeyflower
-## Nicotiana glauca         Nicotiana glauca                  tree tobacco
-## Madia sativa                 Madia sativa                 coast tarweed
-## Bartlettia scaposa     Bartlettia scaposa                Bartlett daisy
+#                   spname                       comname
+#  1     Helianthus annuus              common sunflower
+#  2        Pinus contorta                lodgepole pine
+#  3  Collomia grandiflora        largeflowered collomia
+#  4       Abies magnifica                    golden fir
+#  5      Rosa californica           California wildrose
+#  6       Datura wrightii            sacred thorn-apple
+#  7       Mimulus bicolor yellow and white monkeyflower
+#  8      Nicotiana glauca                  tree tobacco
+#  9          Madia sativa                 coast tarweed
+#  10   Bartlettia scaposa                Bartlett daisy
 ```
-
