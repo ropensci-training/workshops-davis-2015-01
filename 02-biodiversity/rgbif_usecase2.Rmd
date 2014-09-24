@@ -5,7 +5,6 @@
 ```{r}
 library(rgbif)
 library(plyr)
-library(doMC)
 ```
 
 ### List of bird species
