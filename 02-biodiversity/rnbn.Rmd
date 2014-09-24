@@ -1,0 +1,44 @@
+## rnbn examples
+
+### Load package
+
+```{r eval=FALSE}
+library('rnbn')
+```
+
+### Login
+
+```{r}
+nbnLogin(getOption('nbnusername'), getOption('nbnkey'))
+```
+
+### Search for taxon information using the query 'badger'
+
+```{r}
+dt <- getTVKQuery(query = "badger")
+# Display two columns of the data 'ptaxonVersionKey' and 'name'
+dt[, c("ptaxonVersionKey", "name")]
+```
+
+### Get some data for Wild cat with attributes
+
+First I need the TVK for wild cat
+
+```{r}
+tvkQuery <- getTVKQuery(query = "wildcat")
+```
+
+Now, get the data with attributes
+
+```{r}
+WCresults <- getOccurrences(tvks = tvkQuery$ptaxonVersionKey, startYear = 1999,
+                            endYear = 1999, attributes = TRUE, acceptTandC = TRUE)
+head(WCresults)
+```
+
+### Get contact information for datasets
+
+```{r}
+dataProviders(c("GA000426", "GA000832"))
+```
+
