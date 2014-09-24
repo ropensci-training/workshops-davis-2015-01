@@ -235,3 +235,13 @@ res %>% occ_issues(-gass84, mutate = "split_expand")
 ## Variables not shown: COORDINATE_ROUNDED (chr),
 ##      COUNTRY_DERIVED_FROM_COORDINATES (chr)
 ```
+
+
+### Other cleaning
+
+* Contextual cleaning based on 
+  * impossible lat/long values
+  * expected habitat type
+  * expected range of values
+  * etc.
+  

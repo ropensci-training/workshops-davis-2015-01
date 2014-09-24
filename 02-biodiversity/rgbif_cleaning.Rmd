@@ -51,3 +51,13 @@ split, expand, and remove an issue class
 ```{r}
 res %>% occ_issues(-gass84, mutate = "split_expand")
 ```
+
+
+### Other cleaning
+
+* Contextual cleaning based on 
+  * impossible lat/long values
+  * expected habitat type
+  * expected range of values
+  * etc.
+  
