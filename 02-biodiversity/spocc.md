@@ -5,7 +5,6 @@
 
 ```r
 library('spocc')
-library('rCharts')
 ```
 
 ### spocc unifies access to biodiversity data across sources
@@ -53,7 +52,7 @@ out$gbif$meta #  metadata, your query parameters, time the call executed, etc.
 ## [1] "gbif"
 ## 
 ## $time
-## [1] "2014-09-23 15:48:58 PDT"
+## [1] "2014-09-24 16:34:20 PDT"
 ## 
 ## $found
 ## [1] 448876
@@ -139,7 +138,7 @@ And you can squash together data from sources easily
 
 
 ```r
-out <- occ(query='Accipiter striatus', from=c('gbif','ecoengine'))
+out <- occ(query='Accipiter striatus', from=c('gbif','ebird'))
 head( occ2df(out) )
 ```
 
@@ -157,12 +156,12 @@ head( occ2df(out) )
 
 
 ```r
-ecoengine_data <- occ(query = 'Lynx rufus californicus', from = 'ecoengine')
-mapggplot(ecoengine_data)
+ebird_data <- occ(query = 'Accipiter striatus', from = 'ebird')
+mapggplot(ebird_data)
 ```
 
 ```
-## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=35.317305,-118.282982&zoom=5&size=%20640x640&scale=%202&maptype=terrain&sensor=false
+## Map from URL : http://maps.googleapis.com/maps/api/staticmap?center=38.693849,-77.488308&zoom=5&size=%20640x640&scale=%202&maptype=terrain&sensor=false
 ## Google Maps API Terms of Service : http://developers.google.com/maps/terms
 ```
 
@@ -174,7 +173,7 @@ If you have a Github Account, you can get an interactive map on Github in one li
 
 
 ```r
-mapgist(ecoengine_data, color=c("#976AAE","#6B944D","#BD5945"))
+mapgist(ebird_data, color=c("#976AAE","#6B944D","#BD5945"))
 ```
 
 ![](figure/gistmap.png)

@@ -24,18 +24,16 @@ The package can download data for any of the 13 major climate models, but it als
 ```r
 gbr_dat_t <- get_ensemble_temp("GBR", "annualavg", 1900,2100)
 gbr_dat_t <- subset(gbr_dat_t, gbr_dat_t$percentile == 50)
-gbr_dat_t$val <- unlist(gbr_dat_t$val)
+gbr_dat_t$data <- unlist(gbr_dat_t$data)
 
-ggplot(gbr_dat_t, aes(x=fromYear, y=data, group=scenario, colour=scenario)) +
-  theme_bw(base_size=20) +
-  geom_point() +
-  geom_path() +
+ggplot(gbr_dat_t, aes(x=fromYear, y=data, group=scenario, colour=scenario)) + 
+  theme_bw(base_size=20) + 
+  geom_point() + 
+  geom_path() + 
   labs(x="Year", y="Annual Average Temperature in 20 year increments")
 ```
 
-```
-## Error: geom_point requires the following missing aesthetics: y
-```
+![plot of chunk tempPlot](figure/tempPlot.png) 
 
 As you can see the A2 scenario of unchecked growth predicts a higher annual average temperature.  We can look at the same kind of data except this time examining changes in precipitation.
 
@@ -44,45 +42,13 @@ As you can see the A2 scenario of unchecked growth predicts a higher annual aver
 gbr_dat_p <- get_ensemble_precip("GBR", "annualavg", 1900,2100)
 gbr_dat_p <- subset(gbr_dat_p, gbr_dat_p$percentile == 50)
 gbr_dat_p$data <- unlist(gbr_dat_p$data)
-ggplot(gbr_dat_p, aes(x=fromYear, y=data, group=scenario, colour=scenario)) +
-  theme_bw(base_size=20) +
-  geom_point() +
-  geom_path() +
+ggplot(gbr_dat_p, aes(x=fromYear, y=data, group=scenario, colour=scenario)) + 
+  theme_bw(base_size=20) + 
+  geom_point() + 
+  geom_path() + 
   labs(x="Year", y="Annual Average precipitation in mm")
 ```
 
-![plot of chunk precipplot](figure/precipplot.png)
+![plot of chunk precipplot](figure/precipplot.png) 
 
 Here the difference between predicted increases in precipitation are less drastic when comparing the two different scenarios.
-
-### Making maps.
-
-One of the most useful aspects of the climate api is the ability to create maps of climate data.  You can access  data on two spatial scales, Country, and watershed basin.  Watershed basin will provide greater spatial resolution than country (though not in all instances).  The package has convenient data frames with lists of all the basins or countries in all the continents.  Here we'll look at a map of expected precipitation anomalies in Europe.  Maps work by downloading kml files, storing them locally and then reading them into R.  It relies on having a local directory which can be set with `options(kmlpath = <yourpath>)`.  After that a few function calls will download the requested map, link climate data to the map and plot it for you (also note that the initial downloads of kml files can take some time)
-
-
-```r
-### Set local path  
-options(kmlpath = "~/kmltemp")
-
-# create data.frame with mapping data to plot
-eu_basin <- create_map_df(Eur_basin)
-```
-
-
-```r
-### Get some data
-eu_basin_dat <- get_ensemble_temp(Eur_basin, "annualanom", 2080, 2100)
-
-## Subset data to just one scenario, and one percentile so we have 1 piece of information per spatial unit
-eu_basin_dat <- subset(eu_basin_dat, eu_basin_dat$scenario == "a2" & eu_basin_dat$percentile == 50)
-
-# link map dataframe to climate data
-eu_map <- climate_map(eu_basin, eu_basin_dat, return_map = TRUE)
-eu_map +
-  scale_fill_continuous("Temperature \n anomaly by 2080", low = "yellow", high = "red")
-```
-
-![plot of chunk mapping](figure/mapping.png)
-
-
-The temperature anomaly mapped shows a general increase in temperature over the control period of 1961 - 2009.  The geratest increase looks to be coming in the interior of Eastern Europe.

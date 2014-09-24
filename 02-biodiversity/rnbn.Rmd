@@ -1,5 +1,7 @@
 ## rnbn examples
 
+> We can't run this on the RStudio server instance, try this on your own machine...
+
 ### Load package
 
 ```{r eval=FALSE}
@@ -8,13 +10,13 @@ library('rnbn')
 
 ### Login
 
-```{r}
+```{r eval=FALSE}
 nbnLogin(getOption('nbnusername'), getOption('nbnkey'))
 ```
 
 ### Search for taxon information using the query 'badger'
 
-```{r}
+```{r eval=FALSE}
 dt <- getTVKQuery(query = "badger")
 # Display two columns of the data 'ptaxonVersionKey' and 'name'
 dt[, c("ptaxonVersionKey", "name")]
@@ -24,13 +26,13 @@ dt[, c("ptaxonVersionKey", "name")]
 
 First I need the TVK for wild cat
 
-```{r}
+```{r eval=FALSE}
 tvkQuery <- getTVKQuery(query = "wildcat")
 ```
 
 Now, get the data with attributes
 
-```{r}
+```{r eval=FALSE}
 WCresults <- getOccurrences(tvks = tvkQuery$ptaxonVersionKey, startYear = 1999,
                             endYear = 1999, attributes = TRUE, acceptTandC = TRUE)
 head(WCresults)
@@ -38,7 +40,7 @@ head(WCresults)
 
 ### Get contact information for datasets
 
-```{r}
+```{r eval=FALSE}
 dataProviders(c("GA000426", "GA000832"))
 ```
 

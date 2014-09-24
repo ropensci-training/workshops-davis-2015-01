@@ -17,7 +17,7 @@ Here, get identifiers from 5 different sources for *Poa annua*. Then we can pass
 
 ```{r}
 library('taxize')
-out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','eol','tropicos'))
+out <- get_ids(names="Poa annua", db = c('ncbi','itis','col','tropicos'))
 ```
 
 ## Get a classification
@@ -52,7 +52,7 @@ In this case get many identifiers for many names, then pass in identifiers to ge
 
 ```{r}
 mynames <- c("Helianthus annuus","Pinus contorta","Collomia grandiflora")
-out <- get_ids(names=mynames, db = c('ncbi','itis','col','eol','tropicos'))
+out <- get_ids(names=mynames, db = c('ncbi','itis','col','tropicos'))
 out$tropicos
 class(out)
 class(out$col)

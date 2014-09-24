@@ -4,7 +4,6 @@
 
 ```{r load, message=FALSE, warning=FALSE}
 library('spocc')
-library('rCharts')
 ```
 
 ### spocc unifies access to biodiversity data across sources
@@ -20,15 +19,15 @@ out$gbif$data # just data
 And you can squash together data from sources easily
 
 ```{r manysources, message=FALSE, warning=FALSE}
-out <- occ(query='Accipiter striatus', from=c('gbif','ecoengine'))
+out <- occ(query='Accipiter striatus', from=c('gbif','ebird'))
 head( occ2df(out) )
 ```
 
 ### Make a map using ggplot2
 
 ```{r ggplot2}
-ecoengine_data <- occ(query = 'Lynx rufus californicus', from = 'ecoengine')
-mapggplot(ecoengine_data)
+ebird_data <- occ(query = 'Accipiter striatus', from = 'ebird')
+mapggplot(ebird_data)
 ```
 
 ### Make a map using GitHub gists
@@ -36,7 +35,7 @@ mapggplot(ecoengine_data)
 If you have a Github Account, you can get an interactive map on Github in one line of code. The map will open in your default browser. 
 
 ```{r gistmap, eval=FALSE}
-mapgist(ecoengine_data, color=c("#976AAE","#6B944D","#BD5945"))
+mapgist(ebird_data, color=c("#976AAE","#6B944D","#BD5945"))
 ```
 
 ![](figure/gistmap.png)
