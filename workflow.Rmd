@@ -1,0 +1,63 @@
+## A more intuitive workflow
+
+```{r}
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+So there's a different way to work in R. It's all about pipes. Load `magrittr` and `dplyr`
+
+```{r}
+library('magrittr')
+```
+
+> %>% - pronounced "then" Pipe an object forward into a function call/expression.
+
+```{r}
+iris %>%
+  head
+
+iris %>%
+  str
+```
+
+But more complicated as well
+
+```{r}
+library('dplyr')
+library('magrittr')
+```
+
+```{r}
+diamonds %>%
+  group_by(color) %>%
+  summarise(total = sum(price)) %>%
+  arrange(desc(total)) %>%
+  head(5)
+```
+
+Pretty intuitive, right?
+
+------
+
+We can use this with your workflow of getting data, manipulating, analysis, etc.
+
+Here, we'll use the `rnoaa` package to search for stations around Athens, GA with `noaa_stations()`, pass those to `ncdc()`, then `filter()` and `arrange()` rows, then plot, and save the plot.
+
+```{r}
+library(rnoaa)
+```
+
+```{r eval=FALSE}
+ids <- ncdc_stations(...)
+ncdc('GHCND', stationid = ids, startdate = '2010-05-01', enddate = '2010-05-31') %>%
+  filter(...) %>%
+  arrange(...) %>%
+  ggplot(aes(x, y)) + geom_line %>%
+  ggsave("myplot.png")
+```

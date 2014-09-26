@@ -1,5 +1,7 @@
 # Rstudio server
 
+> NOTE: I need to update this, as of 2014-09-26 this isn't updated for new specs
+
 The RStudio you used for the workshop today is available as a public Amazon Machine Image (AMI). The machine ID is:
 
 ```coffee
