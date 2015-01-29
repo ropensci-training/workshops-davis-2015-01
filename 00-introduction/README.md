@@ -1,6 +1,8 @@
+DIMACS Workshop on Global Change
+================================
 
-
-# rOpenSci - Open tools for open science
-
-[![link to presentation](intro_slides.png)](http://ropensci.github.io/workshops-montreal-2013-12/00-introduction/intro_slides/index.html)
+- Title: Massive data management in the context of global change
+- Author: Carl Boettiger
+- Date: 2014-05-20
+- Description: Hosts HTML5 Slides for my talk, written in reveal.js using markdown/pandoc
 
