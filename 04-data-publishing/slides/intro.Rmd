@@ -6,12 +6,13 @@ output: ioslides_presentation
 ---
 
 
-
-
+```{r}
+library(ggplot2)
+```
 
 ## Vertically integrated data repositories
 
-<img src="images/dimacs/tetris.png" width="600">
+<img src="../../00-introduction/images/dimacs/tetris.png" width="600">
 
 ## World Bank Climate Data (Example)
 
@@ -32,7 +33,7 @@ plot <- ggplot(country.dat, aes(x = year, y = data, group = locator)) +
 
 IPCC records and model projections at your fingertips
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 plot
 ```
 
@@ -43,7 +44,7 @@ plot
 
 ## Factory Farm Data...
 
-<img src="images/Bertrand/factory-farm.jpg"  width="600">
+<img src="../../00-introduction/images/Bertrand/factory-farm.jpg"  width="600">
 
  credit: Arthus-Bertrand 
 
@@ -51,7 +52,7 @@ plot
 ## ... Organic, hand-crafted variety
 
 
-<img src="images/Bertrand/organic-farm.png" width="600">
+<img src="../../00-introduction/images/Bertrand/organic-farm.png" width="600">
 
  credit: Arthus-Bertrand 
 
@@ -59,12 +60,12 @@ plot
 
 ## Limitations to vertical integration
 
-![](images/dimacs/tetris-lose.png)
+![](../../00-introduction/images/dimacs/tetris-lose.png)
 
 
 ## Metadata Standards
 
-![](images/berkeley2014/eml.png)
+![](../../00-introduction/images/berkeley2014/eml.png)
 
  Jones+ (2006) doi: [ 10.1146/annurev.ecolsys.37.091305.110031](http://doi.org/10.1146/annurev.ecolsys.37.091305.110031) 
 
@@ -99,7 +100,7 @@ plot
 
 ## Formal semantics
 
-![](images/berkeley2014/semantics.png)
+![](../../00-introduction/images/berkeley2014/semantics.png)
 
 Mitchner (2012) doi: [ 10.1016/j.tree.2011.11.016](http://doi.org/10.1016/j.tree.2011.11.016)
 
@@ -108,21 +109,21 @@ Mitchner (2012) doi: [ 10.1016/j.tree.2011.11.016](http://doi.org/10.1016/j.tree
 
 ## How a new student sees a paper
 
-<img src="images/dimacs/grad-student.jpg" width="600">
+<img src="../../00-introduction/images/dimacs/grad-student.jpg" width="600">
 
 
 ## How a leading professor sees it
 
-<img src="images/dimacs/professor.jpg" width="600">
+<img src="../../00-introduction/images/dimacs/professor.jpg" width="600">
 
 
 ## How a computer sees it
 
-<img src="images/dimacs/computer.jpg" width="600">
+<img src="../../00-introduction/images/dimacs/computer.jpg" width="600">
 
 ## Metaknowledge
 
-<img src="images/dimacs/metaknowledge.jpg" width="600">
+<img src="../../00-introduction/images/dimacs/metaknowledge.jpg" width="600">
 
 Evans+ doi: [ 10.1126/science.1201765](http://doi.org/10.1126/science.1201765) 
 
