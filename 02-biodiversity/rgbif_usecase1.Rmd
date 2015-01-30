@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-In this example, we plot actual occurrence data for *Bradypus* species against a single predictor variable, BIO1 (annual mean temperature). This is only ont step in a species distribution modelling nworkflow.
+In this example, we plot actual occurrence data for *Bradypus* species against a single predictor variable, BIO1 (annual mean temperature). This is only one step in a species distribution modelling nworkflow.
 
 This example can be done using BISON data as well with our rbison package.
 
@@ -73,7 +73,5 @@ points(df2, col='blue')
 ### Further reading
 
 The above example comes from [this tutorial][sdm] on species distribution modeling. 
-
-Warning: tutorial no longer there...
 
 [sdm]: http://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf
