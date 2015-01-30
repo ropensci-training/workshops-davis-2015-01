@@ -1,0 +1,15 @@
+---
+title: "publish EML"
+author: "Carl Boettiger"
+date: "1/29/2015"
+output: html_document
+---
+
+https://cilogon.org/?skin=DataONE
+
+
+```{r}
+library(dataone)
+eml_publish("hawk_occurance.xml", destination="KNB", permanent=FALSE) 
+```
+

@@ -1,0 +1,51 @@
+---
+title: "EML"
+author: "Carl Boettiger"
+date: "1/29/2015"
+output: html_document
+---
+
+
+```{r}
+library("EML")
+library("spocc")
+```
+
+```{r}
+df <- occ2df(occ(query='Accipiter striatus', from=c('gbif','ebird'))) 
+```
+
+```{r}
+col.defs <- c("scientific name",
+              "longitude",
+              "latitude", 
+              "Database from which record was obtained")
+```
+
+```{r}
+unit.defs <- list(
+ "Scientific name",                   # Character string 
+  c(unit = "degree", 
+    precision = 0.001, 
+    bounds = c(-180, 180)),
+  c(unit = "degree", 
+    precision = 0.001, 
+    bounds = c(-90, 90)),
+  c("gbif" = "Global Biodiversity Information Facility, http://www.gbif.org/",
+    "ebird" = "Cornell Ornithology Lab E-Bird database, http://ebird.org/")
+ )
+```
+
+```{r}
+eml_write(df, 
+          col.defs = col.defs, 
+          unit.defs = unit.defs, 
+          creator = "Carl Boettiger <cboettig@ropensci.org>", 
+          file = "hawk_occurance.xml")
+```
+
+```{r}
+eml_validate("hawk_occurance.xml")
+```
+
+
