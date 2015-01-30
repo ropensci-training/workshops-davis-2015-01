@@ -1,0 +1,57 @@
+## rgbif data quality/data cleaning
+
+> In development version only
+
+### Load some libraries
+
+```{r}
+library('rgbif')
+```
+
+### Parsing output by issue
+
+```{r}
+(res <- occ_search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit = 50))
+```
+
+
+Or parse issues in various ways, e,g. remove data rows with certain issue classes
+
+```{r}
+library('magrittr')
+res %>% occ_issues(-gass84, -mdatunl)
+```
+
+split issues into separate columns
+
+```{r}
+res %>% occ_issues(mutate = "split")
+```
+
+expand issues to more descriptive names
+
+```{r}
+res %>% occ_issues(mutate = "expand")
+```
+
+split and expand
+
+```{r}
+res %>% occ_issues(mutate = "split_expand")
+```
+
+split, expand, and remove an issue class
+
+```{r}
+res %>% occ_issues(-gass84, mutate = "split_expand")
+```
+
+
+### Other cleaning
+
+* Contextual cleaning based on 
+  * impossible lat/long values
+  * expected habitat type
+  * expected range of values
+  * etc.
+  
