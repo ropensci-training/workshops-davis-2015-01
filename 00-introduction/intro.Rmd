@@ -1,0 +1,152 @@
+---
+title: "Intro"
+author: "Carl Boettiger"
+date: "1/29/2015"
+output:
+  ioslides_presentation:
+    self_contained: false
+---
+
+
+## The rOpenSci project
+
+building tools, building community
+
+<img src="images/dimacs/ropensci-community.jpg"  width="600">
+
+## Packages
+
+<iframe src="http://status.ropensci.org" height="600" width="100%" frameborder="0"></iframe>
+
+## Contributors
+
+<iframe src="http://ropensci.org/community" height="600" width="100%" frameborder="0"></iframe>
+
+## Community
+
+- ROpenSci Blog: [ropensci.org/blog](http://ropensci.org/blog/)
+- Community Calls: [github.com/ropensci/commcalls](https://github.com/ropensci/commcalls)
+- UnConference: [unconf.ropensci.org](http://unconf.ropensci.org/)
+- ROpenSci Github: [github.com/ropensci](https://github.com/ropensci)
+- ROpenSci Twitter: @ [rOpenSci](https://twitter.com/ropensci)
+
+## Goals
+
+- Increase the availability and quality of R packages to interface with research data
+- Support reproducibility along the whole data analysis pipeline
+- Sustainable software design
+- Sustainable community 
+
+
+
+
+```{r include=FALSE}
+library(ggplot2)
+library(knitr)
+knitr::opts_chunk$set(
+  comment = "# ",
+  error = FALSE,
+  cache = TRUE,
+  message = FALSE,
+  warning = FALSE)
+```
+
+## Remote sensors
+
+<img src="images/berkeley2014/landsat2.jpg" width="600">
+
+ credit: NASA 
+
+## micro sensors
+
+<img src="images/berkeley2014/gps-zebra.jpg" width="600">
+
+ credit: NSF  
+
+
+## NEON
+
+<img src="images/asn2014/neon.png" width="600">
+
+  credit: Hopkin (2006) doi: [ 10.1038/444420a](http://doi.org/10.1038/444420a)  
+
+## OOI
+
+<img src="images/asn2014/ooi.png" width="600">
+
+  credit: Witze (2013) doi: [ 10.1038/501480a](http://doi.org/10.1038/501480a)  
+
+## Computer simulations
+
+<img src="images/shifts/carver.jpg" width="600">
+
+  credit: NERSC  
+
+<!-- 9,984 cores 106 teraflops -->
+
+
+## Field-based study
+
+<img src="images/berkeley2014/icecore.jpg" width="600">
+
+ credit: Scambos & Bauer, [NSIDC](http://nsidc.org/cryosphere/quickfacts/icesheets.html) 
+
+
+## Growth of climate data by type
+
+<img src="images/dimacs/growth-climate-data.png" width="450">
+
+  Overpeck+ (2011) doi: [ 10.1126/science.1197869](http://doi.org/10.1126/science.1197869)  
+
+
+# The real challenge is doing science today that is relevant to the data tomorrow
+
+
+## Example: Synthetic analysis of biodiversity loss
+
+<img src="images/dimacs/diversity-fig1.png" width="800">
+
+Synthesizes over 140 data sets.
+
+
+## Finds no evidence for systematic loss
+
+<img src="images/dimacs/diversity-fig2.png" width="800">
+
+How easy would it be to update this to reflect new data?
+
+
+
+
+
+
+
+# What is "a lot" of data?
+
+
+## Engineering bottlenecks
+
+<img src="images/dimacs/bottleneck.jpg" width="600">
+
+  Baraniuk (2011) doi: [ 10.1126/science.1197448](http://doi.org/10.1126/science.1197448)  
+
+## From bottlenecks to workflows
+
+<img src="images/dimacs/science-bottleneck.png" width="600">
+
+ adapted from Reichman+ (2011) doi: [ 10.1126/science.1197962](http://doi.org/10.1126/science.1197962) 
+
+## From bottlenecks to workflows
+
+<img src="images/berkeley2014/data-workflow.png" width="600">
+
+Reichman+ (2011) doi: [ 10.1126/science.1197962](http://doi.org/10.1126/science.1197962) 
+
+
+## Example workflows: Dynamic documents
+
+<img src="images/dimacs/spectrum.png" width="600">
+
+Peng (2011) doi: [10.1126/science.1213847](http://doi.org/10.1126/science.1213847)
+
+
